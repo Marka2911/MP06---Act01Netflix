@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace _02___Act01Netflix.DAO
 {
-    internal class DAOFactoryNetflix
+    public class DAOFactoryNetflix
     {
+        public IDAONetflix CrearNetflixDao()
+        {
+            return new IDAONetflixImpementation();
+        }
     }
 }

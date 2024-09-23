@@ -271,7 +271,7 @@ index,id,title,type,release_year,age_certification,runtime,genres,production_cou
 269,ts32186,Sonic X,SHOW,2003,TV-Y7,21,"['action', 'drama', 'thriller', 'animation', 'comedy', 'fantasy', 'family', 'scifi']",['JP'],3.0,tt0367413,6.1,4577.0
 270,ts11313,DEATH NOTE,SHOW,2006,TV-14,24,"['scifi', 'animation', 'crime', 'drama', 'fantasy', 'thriller']",['JP'],1.0,tt0877057,9.0,302147.0
 271,tm34310,Zoolander,MOVIE,2001,PG-13,90,"['comedy', 'european']","['US', 'DE']",,tt0196229,6.5,260975.0
-272,ts21247,The Vampire Diaries,SHOW,2009,TV-14,42,"['scifi', 'drama', 'thriller', 'fantasy', 'horror', 'romance']",['US'],8.0,tt1405406,7.7,310776.0
+272,ts21247,The Vampire Diaries,SHOW,2009,TV-14,42,"['scifi', 'drama', 'x', 'thriller', 'fantasy', 'horror', 'romance']",['US'],8.0,tt1405406,7.7,310776.0
 273,tm160815,Charlie and the Chocolate Factory,MOVIE,2005,PG,106,"['fantasy', 'comedy', 'family']","['GB', 'US', 'AU']",,tt0367594,6.6,465995.0
 274,tm78671,Cleaner,MOVIE,2007,R,88,"['thriller', 'crime']",['US'],,tt0896798,6.1,41052.0
 275,tm89036,Harold & Kumar Go to White Castle,MOVIE,2004,R,88,['comedy'],['US'],,tt0366551,7.0,193053.0
@@ -302,7 +302,7 @@ index,id,title,type,release_year,age_certification,runtime,genres,production_cou
 300,ts6644,Borgen,SHOW,2010,TV-MA,58,"['drama', 'european']",['DK'],4.0,tt1526318,8.5,23523.0
 301,tm142086,The Last Samurai,MOVIE,2003,R,154,"['drama', 'history', 'war', 'action']","['NZ', 'JP', 'US']",,tt0325710,7.8,429097.0
 302,ts22018,iCarly,SHOW,2007,TV-G,26,"['comedy', 'family', 'romance']",['US'],6.0,tt0972534,6.7,38281.0
-303,ts30311,Victorious,SHOW,2010,TV-G,25,"['comedy', 'drama', 'family', 'music', 'romance', 'sport']",['US'],4.0,tt1604099,6.9,24224.0
+303,ts30311,Victorious,SHOW,2010,TV-G,25,"['comedy', 'drama', 'family', 'music','x','x', 'romance', 'sport']",['US'],4.0,tt1604099,6.9,24224.0
 304,tm95252,The Book of Eli,MOVIE,2010,R,118,"['thriller', 'action', 'drama', 'european']",['US'],,tt1037705,6.8,312538.0
 305,tm136808,Identity,MOVIE,2003,R,90,['thriller'],['US'],,tt0340770,7.3,240433.0
 306,ts21197,Merlin,SHOW,2008,TV-PG,44,"['action', 'scifi', 'drama', 'fantasy', 'european']",['GB'],5.0,tt1199099,7.9,80138.0
