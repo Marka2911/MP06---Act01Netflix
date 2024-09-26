@@ -11,5 +11,6 @@ namespace _02___Act01Netflix.DAO
         int SelectByGenre(String genre, String outputFile);
         String SelectByIndex(int index);
         String SelectById(int id);
+        RawTitle[] ReadTitles(int index, int lenght);
     }
 }

@@ -7,23 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1000">
     <Grid>
-        <TextBox x:Name="txt_genere" HorizontalAlignment="Left" Margin="110,51,0,0" TextWrapping="Wrap" Text="Genere" VerticalAlignment="Top" Width="55" Height="23" RenderTransformOrigin="-0.035,0.678"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="95"><Run Language="es-es" Text="Escriu"/><Run Text=" un genere de musica"/></TextBlock>
-        <Button x:Name = "btn_genere" Content="Enviar" HorizontalAlignment="Left" Margin="400,56,0,0" VerticalAlignment="Top" Click="Genere_Click"/>
-        <TextBox x:Name="txt_outputFile" HorizontalAlignment="Left" Margin="308,56,0,0" TextWrapping="Wrap" Text="OutputFile" VerticalAlignment="Top" Width="66" Height="18"/>
-        <TextBlock HorizontalAlignment="Left" Margin="189,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="95"><Run Language="es-es" Text="Nom del arxiu on vols treur-ho"/></TextBlock>
-        <TextBox x:Name="num_generes" HorizontalAlignment="Left" Margin="571,56,0,0" TextWrapping="Wrap" Text="OutputFile" VerticalAlignment="Top" Width="66" Height="18"/>
-        <TextBlock HorizontalAlignment="Left" Margin="457,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="95"><Run Language="es-es" Text="Num de records amb el teu genere"/></TextBlock>
+        <TextBox x:Name="txt_genere" HorizontalAlignment="Left" Margin="121,51,0,0" TextWrapping="Wrap" Text="Genere" VerticalAlignment="Top" Width="86" Height="23" RenderTransformOrigin="-0.035,0.678"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="105"><Run Language="es-es" Text="Escriu"/><Run Text=" un genere de musica"/></TextBlock>
+        <Button x:Name = "btn_genere" Content="Enviar" HorizontalAlignment="Left" Margin="441,56,0,0" VerticalAlignment="Top" Click="Genere_Click" Width="40"/>
+        <TextBox x:Name="txt_outputFile" HorizontalAlignment="Left" Margin="322,56,0,0" TextWrapping="Wrap" Text="OutputFile" VerticalAlignment="Top" Width="102" Height="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="212,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="105"><Run Language="es-es" Text="Nom del arxiu on vols treur-ho"/></TextBlock>
+        <TextBox x:Name="num_generes" HorizontalAlignment="Left" Margin="630,56,0,0" TextWrapping="Wrap" Text="OutputFile" VerticalAlignment="Top" Width="123" Height="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="504,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="105"><Run Language="es-es" Text="Num de records amb el teu genere"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" Width="95"><Run Language="es-es" Text="Digues un index i et retornem el record"/></TextBlock>
-        <TextBox x:Name="txt_index" HorizontalAlignment="Left" Margin="110,102,0,0" TextWrapping="Wrap" Text="Index" VerticalAlignment="Top" Width="55" Height="23" RenderTransformOrigin="-0.035,0.678"/>
+        <TextBox x:Name="txt_index" HorizontalAlignment="Left" Margin="110,102,0,0" TextWrapping="Wrap" Text="Index" VerticalAlignment="Top" Width="85" Height="23" RenderTransformOrigin="-0.035,0.678"/>
         <TextBlock x:Name = "txt_record" HorizontalAlignment="Left" Margin="241,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width ="717" Height="87"/>
-        <Button x:Name = "btn_index" Content="Enviar" HorizontalAlignment="Left" Margin="170,104,0,0" VerticalAlignment="Top" Click="Index_Click"/>
+        <Button x:Name = "btn_index" Content="Enviar" HorizontalAlignment="Left" Margin="200,104,0,0" VerticalAlignment="Top" Click="Index_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="241,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="94"><Run Language="es-es" Text="Record"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="10,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" Width="95"><Run Text="Digues un "/><Run Language="es-es" Text="ID"/><Run Text=" i et retornem el record"/></TextBlock>
-        <TextBox x:Name="txt_ID" HorizontalAlignment="Left" Margin="110,211,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="55" Height="23" RenderTransformOrigin="-0.035,0.678"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" Width="95"><Run Text="Digues un "/><Run Language="es-es" Text="ID"/><Run Text=" i et retornem el record"/></TextBlock>
+        <TextBox x:Name="txt_ID" HorizontalAlignment="Left" Margin="110,243,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="85" Height="23" RenderTransformOrigin="-0.035,0.678"/>
         <TextBlock x:Name = "txt_record_ID" HorizontalAlignment="Left" Margin="241,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width ="717" Height="87"/>
-        <Button x:Name = "btn_ID" Content="Enviar" HorizontalAlignment="Left" Margin="170,213,0,0" VerticalAlignment="Top" Click="ID_Click"/>
+        <Button x:Name = "btn_ID" Content="Enviar" HorizontalAlignment="Left" Margin="200,245,0,0" VerticalAlignment="Top" Click="ID_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="241,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="94"><Run Language="es-es" Text="Record"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" Width="128"><Run Text="Exemples de "/><Run Text="ID"/><LineBreak/><Run FontSize="12.666666666666666" Text="tm135083"/><Run FontSize="12.666666666666666" Text="/"/><Run FontFamily="Cascadia Mono" FontSize="12.666666666666666" Text="ts45948"/><LineBreak/><Span Foreground="Black" FontSize="12.666666666666666"/><LineBreak/><Run/></TextBlock>
+        <Button x:Name = "btn_readTitles" Content="Enviar" HorizontalAlignment="Left" Margin="200,295,0,0" VerticalAlignment="Top" Click="btn_readTitles_Click"/>
+        <TextBox x:Name="txt_rdTitles_index" HorizontalAlignment="Left" Margin="15,293,0,0" TextWrapping="Wrap" Text="INDEX" VerticalAlignment="Top" Width="47" Height="23" RenderTransformOrigin="-0.035,0.678"/>
+        <TextBox x:Name="txt_rdTitles_lenght" HorizontalAlignment="Left" Margin="97,293,0,0" TextWrapping="Wrap" Text="LENGHT" VerticalAlignment="Top" Width="85" Height="23" RenderTransformOrigin="-0.035,0.678"/>
 
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using _02___Act01Netflix.DAO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -45,12 +46,29 @@ namespace _02___Act01Netflix
         }
         private void Index_Click(object sender, RoutedEventArgs e)
         {
-            index = Convert.ToInt32(txt_index.Text);
-            string record = dao.SelectByIndex(index);
-            if (record == null)
-                txt_record.Text = $"No hi ha ningun record amb l'index {index}";
-            else
-                txt_record.Text = record;
+            try
+            {
+                if (txt_index.Text == "")
+                {
+                    throw new Exception("El input no pot ser null");
+                }
+                index = Convert.ToInt32(txt_index.Text);
+
+                string record = dao.SelectByIndex(index);
+                if (record == null)
+                    txt_record.Text = $"No hi ha ningun record amb l'index {index}";
+                else
+                    txt_record.Text = record;
+            }
+            catch (FormatException)
+            {
+
+                txt_record.Text = "Input mal formatat torna a intentar-ho";
+            }
+            catch (Exception ex)
+            {
+                txt_record.Text = ex.Message;
+            }
         }
 
         private void ID_Click(object sender, RoutedEventArgs e)
@@ -60,12 +78,31 @@ namespace _02___Act01Netflix
             {
                 val += txt_ID.Text[i];
             }
-            int sId = Convert.ToInt32(val);
-            string record = dao.SelectById(sId);
-            if (record == null)
-                txt_record_ID.Text = $"No hi ha ningun record amb l'index {index}";
+
+            if (val == null)
+                txt_record_ID.Text = "Input mal formatat, no pot ser null o tindre 2 o menys caracters";
             else
-                txt_record_ID.Text = record;
+                try
+                {
+                    int sId = Convert.ToInt32(val);
+                    string record = dao.SelectById(sId);
+                    if (record == null)
+                        txt_record_ID.Text = $"No hi ha ningun record amb l'id {val}";
+                    else
+                        txt_record_ID.Text = record;
+                }
+                catch (FormatException)
+                {
+
+                    txt_record_ID.Text = "Input mal formatat torna a intentar-ho";
+                }
+        }
+
+        private void btn_readTitles_Click(object sender, RoutedEventArgs e)
+        {
+            int index = Convert.ToInt32(txt_rdTitles_index.Text);
+            int length = Convert.ToInt32(txt_rdTitles_lenght.Text);
+            dao.ReadTitles(index, length);
         }
     }
 }

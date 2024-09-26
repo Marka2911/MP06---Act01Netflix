@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 
 namespace _02___Act01Netflix.DAO
 {
@@ -100,6 +101,32 @@ namespace _02___Act01Netflix.DAO
                 record = null;
             sr.Close();
             return record;
+        }
+
+        public RawTitle[] ReadTitles(int index, int lenght)
+        {
+            StreamReader sr = new StreamReader(ENTRADAFN);
+            RawTitle[] rawTitles = new RawTitle[lenght];
+            int j = 0;
+            string linea = sr.ReadLine();
+            for (int i = 0; i <= index; i++)
+            {
+                linea = sr.ReadLine();
+            }
+            int totalLength = lenght + index;
+            while (index <= totalLength && linea != null)
+            {
+                string[] camps = Regex.Split(linea, PATTERN);
+
+                RawTitle title = new RawTitle(Convert.ToInt32(camps[0]), camps[1],
+                    camps[2], camps[3], Convert.ToInt32(camps[4]), Convert.ToInt32(camps[5]),
+                    Convert.ToDouble(camps[6]), Convert.ToDouble(camps[7]));
+                rawTitles[j] = title;
+                index++;
+                linea = sr.ReadLine();
+            }
+            return rawTitles;
+
         }
     }
 }
