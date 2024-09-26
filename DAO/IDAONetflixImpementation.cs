@@ -114,15 +114,25 @@ namespace _02___Act01Netflix.DAO
                 linea = sr.ReadLine();
             }
             int totalLength = lenght + index;
-            while (index <= totalLength && linea != null)
+            while (index < totalLength + 1 && linea != null)
             {
                 string[] camps = Regex.Split(linea, PATTERN);
 
+                int intSeasons = 0;
+                double seasons;
+                if (camps[9] != "")
+                {
+                    seasons = Convert.ToDouble(camps[9]);
+                    intSeasons = Convert.ToInt32(seasons);
+                }
                 RawTitle title = new RawTitle(Convert.ToInt32(camps[0]), camps[1],
-                    camps[2], camps[3], Convert.ToInt32(camps[4]), Convert.ToInt32(camps[5]),
-                    Convert.ToDouble(camps[6]), Convert.ToDouble(camps[7]));
-                rawTitles[j] = title;
+                    camps[2], camps[3], Convert.ToInt32(camps[4]), intSeasons,
+                    Convert.ToDouble(camps[11]), Convert.ToDouble(camps[12]));
+                
+                
                 index++;
+                rawTitles[j] = title;
+                j++;
                 linea = sr.ReadLine();
             }
             return rawTitles;
