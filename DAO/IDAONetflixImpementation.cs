@@ -114,8 +114,9 @@ namespace _02___Act01Netflix.DAO
                 linea = sr.ReadLine();
             }
             int totalLength = lenght + index;
-            while (index < totalLength + 1 && linea != null)
+            while (index < totalLength && linea != null)
             {
+                int idx = 0 ; string id = ""; string csvTitle = ""; string type = ""; int release = 0; double score = 0.0; double votes = 0.0;
                 string[] camps = Regex.Split(linea, PATTERN);
 
                 int intSeasons = 0;
@@ -125,10 +126,21 @@ namespace _02___Act01Netflix.DAO
                     seasons = Convert.ToDouble(camps[9]);
                     intSeasons = Convert.ToInt32(seasons);
                 }
-                RawTitle title = new RawTitle(Convert.ToInt32(camps[0]), camps[1],
-                    camps[2], camps[3], Convert.ToInt32(camps[4]), intSeasons,
-                    Convert.ToDouble(camps[11]), Convert.ToDouble(camps[12]));
-                
+                if (camps[0] != "")
+                    idx = Convert.ToInt32(camps[0]);
+                if (camps[1] != "")
+                    id = camps[1];
+                if (camps[2] != "")
+                    csvTitle = camps[2];
+                if (camps[3] != "")
+                    type = camps[3];
+                if (camps[4] != "")
+                    release = Convert.ToInt32(camps[4]);
+                if (camps[11] != "")
+                    score = Convert.ToDouble(camps[11]);
+                if (camps[12] != "")
+                    votes = Convert.ToDouble(camps[12]);
+                RawTitle title = new RawTitle(idx, id, csvTitle, type, release, intSeasons, score, votes);
                 
                 index++;
                 rawTitles[j] = title;
@@ -137,6 +149,17 @@ namespace _02___Act01Netflix.DAO
             }
             return rawTitles;
 
+        }
+
+        public int PreMerge(RawTitle[] titles, string outFileName)
+        {
+            StreamWriter sw = new StreamWriter(outFileName + ".csv");
+            foreach (RawTitle rawTitle in titles)
+            {
+                sw.WriteLine(rawTitle.ToString());
+            }
+            sw.Close();
+            return titles.Length;
         }
     }
 }

@@ -12,10 +12,10 @@ namespace _02___Act01Netflix
         string id;
         string title;
         string type;
-        int release_Year;
-        int seasons;
-        double imdb_score;
-        double imdb_votes;
+        int? release_Year;
+        int? seasons;
+        double? imdb_score;
+        double? imdb_votes;
         public RawTitle(int index, string id, string title, string type, int release_Year, int seasons, double imdb_score, double imdb_votes)
         {
             this.Index = index;
@@ -32,16 +32,20 @@ namespace _02___Act01Netflix
         public string Id { get => id; set => id = value; }
         public string Title { get => title; set => title = value; }
         public string Type { get => type; set => type = value; }
-        public int Release_Year { get => release_Year; set => release_Year = value; }
-        public int Seasons { get => seasons; set => seasons = value; }
-        public double Imdb_score { get => imdb_score; set => imdb_score = value; }
-        public double Imdb_votes { get => imdb_votes; set => imdb_votes = value; }
+        public int? Release_Year { get => release_Year; set => release_Year = value; }
+        public int? Seasons { get => seasons; set => seasons = value; }
+        public double? Imdb_score { get => imdb_score; set => imdb_score = value; }
+        public double? Imdb_votes { get => imdb_votes; set => imdb_votes = value; }
 
+        public override string ToString()
+        {
+            return $"{Index}; {Id}; {Title}; {Type}; {Release_Year}; {Seasons}; {Imdb_score}; {imdb_votes}";
+        }
         public int CompareTo(RawTitle? other)
         {
             int retornar = 0;
-            if (other != null)
-                retornar = other.Imdb_score.CompareTo(this.Imdb_score);
+            if (other != null && other.Imdb_score != null & this.imdb_score != null)
+                retornar = other.Imdb_score.Value.CompareTo(this.Imdb_score.Value);
             return retornar;
         }
 

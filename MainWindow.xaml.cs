@@ -1,4 +1,5 @@
 ﻿using _02___Act01Netflix.DAO;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,8 @@ namespace _02___Act01Netflix
         private DAOFactoryNetflix factory = new DAOFactoryNetflix();
         private IDAONetflix dao = new IDAONetflixImpementation();
 
+        private RawTitle[] titles;
+
         private string genere;
         private string outputFile;
         private int index;
@@ -28,6 +31,8 @@ namespace _02___Act01Netflix
 
         public MainWindow()
         {
+            
+
             InitializeComponent();
             
         }
@@ -100,9 +105,54 @@ namespace _02___Act01Netflix
 
         private void btn_readTitles_Click(object sender, RoutedEventArgs e)
         {
-            int index = Convert.ToInt32(txt_rdTitles_index.Text);
-            int length = Convert.ToInt32(txt_rdTitles_lenght.Text);
-            dao.ReadTitles(index, length);
+            try
+            {
+                if (txt_rdTitles_index.Text == "" || txt_rdTitles_lenght.Text == "")
+                {
+                    throw new Exception("El input no pot ser null");
+                }
+
+                int index = Convert.ToInt32(txt_rdTitles_index.Text);
+                int length = Convert.ToInt32(txt_rdTitles_lenght.Text);
+                titles = dao.ReadTitles(index, length);
+                txt_RawTitle.Text = $"Ha funcionat tot correctament";
+
+            }
+            catch (FormatException)
+            {
+
+                txt_RawTitle.Text = "Input mal formatat torna a intentar-ho";
+            }
+            catch (Exception ex)
+            {
+                txt_RawTitle.Text = ex.Message;
+            }          
+        }
+
+        private void btn_WriteTitles_Click(object sender, RoutedEventArgs e)
+        {
+            int numTitles = 0;
+            try
+            {
+                if (txt_outFileForTitles.Text == "")
+                {
+                    throw new Exception("El input no pot ser null");
+                }
+
+                string otutputFile = txt_outFileForTitles.Text;
+                numTitles = dao.PreMerge(titles, otutputFile);
+                txt_PreMerge.Text = $"Ha funcionat tot correctament... num de titlesFormatats - {numTitles}";
+
+            }
+            catch (FormatException)
+            {
+                txt_PreMerge.Text = "Input mal formatat torna a intentar-ho";
+            }
+            catch (Exception ex)
+            {
+                txt_PreMerge.Text = ex.Message;
+            }
+
         }
     }
 }
