@@ -14,6 +14,7 @@ namespace _02___Act01Netflix.DAO
     {
         public static string ENTRADAFN = "raw_titles.csv";
         public static string PATTERN = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
+
         public int SelectByGenre(string genre, string outputFile)
         {
             StreamReader sr = new StreamReader(ENTRADAFN);
@@ -160,6 +161,74 @@ namespace _02___Act01Netflix.DAO
             }
             sw.Close();
             return titles.Length;
+        }
+
+        public List<RawTitle> LlegirTitols(int nTitols, string fitxer)
+        {
+            StreamReader sr = new StreamReader(ENTRADAFN);
+            StreamWriter sw = new StreamWriter(fitxer);
+
+            string linea;
+            int i = 0;
+            List<RawTitle> rawTitles = new List<RawTitle>();
+            for (i = 0; i < nTitols; i++)
+                sr.ReadLine();
+            sr.ReadLine();
+            linea = sr.ReadLine();
+            i = 0;
+            while (i < nTitols + 3000 && linea != null)
+            {
+                int idx = 0; string id = ""; string csvTitle = ""; string type = ""; int release = 0; double score = 0.0; double votes = 0.0;
+                string[] camps = Regex.Split(linea, PATTERN);
+
+                int intSeasons = 0;
+                double seasons;
+                if (camps[9] != "")
+                {
+                    seasons = Convert.ToDouble(camps[9]);
+                    intSeasons = Convert.ToInt32(seasons);
+                }
+                if (camps[0] != "")
+                    idx = Convert.ToInt32(camps[0]);
+                if (camps[1] != "")
+                    id = camps[1];
+                if (camps[2] != "")
+                    csvTitle = camps[2];
+                if (camps[3] != "")
+                    type = camps[3];
+                if (camps[4] != "")
+                    release = Convert.ToInt32(camps[4]);
+                if (camps[11] != "")
+                    score = Convert.ToDouble(camps[11]);
+                if (camps[12] != "")
+                    votes = Convert.ToDouble(camps[12]);
+
+                RawTitle title = new RawTitle(idx, id, csvTitle, type, release, intSeasons, score, votes);
+                rawTitles.Add(title);
+                linea = sr.ReadLine();
+                i++;
+            }
+            rawTitles.Sort();
+            foreach(RawTitle title in rawTitles)
+            {
+                sw.WriteLine(title.ToString());
+            }
+            return rawTitles;
+        }
+
+        public void MergeTitols(List<RawTitle> primerPart, List<RawTitle> segonaPart, string fitxer)
+        {
+            List<RawTitle> allTitols = new List<RawTitle>();
+
+            foreach(RawTitle title in primerPart)
+                allTitols.Add(title);
+            
+            foreach (RawTitle title in segonaPart)
+                allTitols.Add(title);
+
+            StreamWriter sw = new StreamWriter(fitxer);
+            allTitols.Sort();
+            foreach (RawTitle title in allTitols) { sw.WriteLine(title.ToString()); }
         }
     }
 }

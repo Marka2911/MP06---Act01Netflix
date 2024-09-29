@@ -13,7 +13,8 @@ namespace _02___Act01Netflix.DAO
         String SelectById(int id);
         RawTitle[] ReadTitles(int index, int lenght);
         int PreMerge(RawTitle[] titles, String outFileName);
-
+        List<RawTitle> LlegirTitols(int nTitols, string fitxer);
+        void MergeTitols(List<RawTitle> primerPart, List<RawTitle> segonaPart, string fitxer);
 
     }
 }

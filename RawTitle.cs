@@ -45,7 +45,14 @@ namespace _02___Act01Netflix
         {
             int retornar = 0;
             if (other != null && other.Imdb_score != null & this.imdb_score != null)
+            {
+                if (other.imdb_score.Value == this.imdb_score.Value)
+                {
+                    this.title.CompareTo(other.title);
+                }
                 retornar = other.Imdb_score.Value.CompareTo(this.Imdb_score.Value);
+
+            }
             return retornar;
         }
 

@@ -19,6 +19,9 @@ namespace _02___Act01Netflix
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string FIRSTHALF = "FIRSTHALF.CSV";
+        public static string SECONDHALF = "SECONDHALF.CSV";
+        public static string MERGED = "MERGED.CSV";
         private DAOFactoryNetflix factory = new DAOFactoryNetflix();
         private IDAONetflix dao = new IDAONetflixImpementation();
 
@@ -31,8 +34,10 @@ namespace _02___Act01Netflix
 
         public MainWindow()
         {
-            
+            List<RawTitle> primeraPart = dao.LlegirTitols(0, FIRSTHALF);
+            List<RawTitle> segonaPart = dao.LlegirTitols(3000, SECONDHALF);
 
+            dao.MergeTitols(primeraPart, segonaPart, MERGED);
             InitializeComponent();
             
         }
