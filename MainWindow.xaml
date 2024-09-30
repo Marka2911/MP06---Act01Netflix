@@ -32,6 +32,10 @@
         <TextBox x:Name="txt_outFileForTitles" HorizontalAlignment="Left" Margin="15,328,0,0" TextWrapping="Wrap" Text="outputFile.csv" VerticalAlignment="Top" Width="86" Height="23" RenderTransformOrigin="-0.035,0.678"/>
         <TextBlock x:Name = "txt_RawTitle" HorizontalAlignment="Left" Margin="241,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width ="717" Height="22"/>
         <TextBlock x:Name = "txt_PreMerge" HorizontalAlignment="Left" Margin="164,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width ="717" Height="22"/>
+        <TextBox x:Name="txt_minScore" HorizontalAlignment="Left" Margin="15,367,0,0" TextWrapping="Wrap" Text="MIN" VerticalAlignment="Top" Width="47" Height="23" RenderTransformOrigin="-0.035,0.678"/>
+        <TextBox x:Name="txt_maxScore" HorizontalAlignment="Left" Margin="74,367,0,0" TextWrapping="Wrap" Text="MAX" VerticalAlignment="Top" Width="47" Height="23" RenderTransformOrigin="-0.035,0.678"/>
+        <Button x:Name = "btn_Scores" Content="Enviar" HorizontalAlignment="Left" Margin="152,367,0,0" VerticalAlignment="Top" Click="btn_Scores_Click"/>
+        <TextBlock x:Name = "txt_scores" HorizontalAlignment="Left" Margin="218,366,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width ="717" Height="55"/>
 
     </Grid>
 </Window>

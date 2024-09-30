@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace _02___Act01Netflix.DAO
@@ -14,6 +15,7 @@ namespace _02___Act01Netflix.DAO
     {
         public static string ENTRADAFN = "raw_titles.csv";
         public static string PATTERN = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
+        public static string MERGED = "MERGED.CSV";
 
         public int SelectByGenre(string genre, string outputFile)
         {
@@ -148,6 +150,7 @@ namespace _02___Act01Netflix.DAO
                 j++;
                 linea = sr.ReadLine();
             }
+            sr.Close();
             return rawTitles;
 
         }
@@ -160,6 +163,7 @@ namespace _02___Act01Netflix.DAO
                 sw.WriteLine(rawTitle.ToString());
             }
             sw.Close();
+
             return titles.Length;
         }
 
@@ -213,10 +217,12 @@ namespace _02___Act01Netflix.DAO
             {
                 sw.WriteLine(title.ToString());
             }
+            sw.Close();
+            sr.Close();
             return rawTitles;
         }
 
-        public void MergeTitols(List<RawTitle> primerPart, List<RawTitle> segonaPart, string fitxer)
+        public List<RawTitle> MergeTitols(List<RawTitle> primerPart, List<RawTitle> segonaPart, string fitxer)
         {
             List<RawTitle> allTitols = new List<RawTitle>();
 
@@ -229,6 +235,40 @@ namespace _02___Act01Netflix.DAO
             StreamWriter sw = new StreamWriter(fitxer);
             allTitols.Sort();
             foreach (RawTitle title in allTitols) { sw.WriteLine(title.ToString()); }
+            sw.Close();
+            return allTitols;
+            
+        }
+
+        public List<string> RangeScore(double min, double max)
+        {
+            double score = 0.0;
+  
+            List<string> titols = new List<string>();
+            StreamReader sr = new StreamReader(MERGED);
+            string linea = sr.ReadLine();
+            string[] camps = linea.Split(';');
+
+            if (camps[6] != "")
+                score = Convert.ToDouble(camps[6]);
+
+            while (score > max)
+            {
+                linea = sr.ReadLine();
+                camps = linea.Split(';');
+                if (camps[6] != "")
+                    score = Convert.ToDouble(camps[6]);
+                
+            }
+            while (score >= min)
+            {
+                titols.Add(camps[2]);
+                linea = sr.ReadLine();
+                camps = linea.Split(';');
+                if (camps[6] != "")
+                    score = Convert.ToDouble(camps[6]);             
+            }
+            return titols;
         }
     }
 }

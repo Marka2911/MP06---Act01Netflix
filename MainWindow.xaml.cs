@@ -37,7 +37,8 @@ namespace _02___Act01Netflix
             List<RawTitle> primeraPart = dao.LlegirTitols(0, FIRSTHALF);
             List<RawTitle> segonaPart = dao.LlegirTitols(3000, SECONDHALF);
 
-            dao.MergeTitols(primeraPart, segonaPart, MERGED);
+            List<RawTitle> merged = dao.MergeTitols(primeraPart, segonaPart, MERGED);
+
             InitializeComponent();
             
         }
@@ -143,10 +144,16 @@ namespace _02___Act01Netflix
                 {
                     throw new Exception("El input no pot ser null");
                 }
-
                 string otutputFile = txt_outFileForTitles.Text;
-                numTitles = dao.PreMerge(titles, otutputFile);
-                txt_PreMerge.Text = $"Ha funcionat tot correctament... num de titlesFormatats - {numTitles}";
+                if (titles == null)
+                {
+                    txt_PreMerge.Text = "Llista de titols null";
+                }
+                else
+                {
+                    numTitles = dao.PreMerge(titles, otutputFile);
+                    txt_PreMerge.Text = $"Ha funcionat tot correctament...  num de titlesFormatats - {numTitles}";
+                }
 
             }
             catch (FormatException)
@@ -156,6 +163,47 @@ namespace _02___Act01Netflix
             catch (Exception ex)
             {
                 txt_PreMerge.Text = ex.Message;
+            }
+        }
+
+        private void btn_Scores_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                if (txt_minScore.Text == "" || txt_maxScore.Text == "")
+                {
+                    throw new Exception("El input no pot ser null");
+                }
+                if (!File.Exists("MERGED.CSV"))
+                {
+                    throw new FileNotFoundException();
+                }
+                else
+                {
+                    double MIN = Convert.ToDouble(txt_minScore.Text);
+                    double MAX = Convert.ToDouble(txt_maxScore.Text);
+                    if (MIN > MAX)
+                    {
+                        txt_scores.Text = $"El MIN - {MIN} - es més gran que el MAX - {MAX}";
+                    }
+                    else
+                    {
+                        dao.RangeScore(MIN, MAX);
+                        txt_scores.Text = $"Ha funcionat tot correctament...";
+                    }
+                }
+
+            }
+            catch (FormatException)
+            {
+                txt_scores.Text = "Input mal formatat torna a intentar-ho";
+
+            }
+            
+            catch (Exception ex)
+            {
+                txt_scores.Text = ex.Message;
             }
 
         }
