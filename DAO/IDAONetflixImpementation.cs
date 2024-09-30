@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using _02___Act01Netflix.Model;
 
 namespace _02___Act01Netflix.DAO
 {
@@ -20,7 +21,7 @@ namespace _02___Act01Netflix.DAO
         public int SelectByGenre(string genre, string outputFile)
         {
             StreamReader sr = new StreamReader(ENTRADAFN);
-            StreamWriter sw = new StreamWriter(outputFile);
+            StreamWriter sw = new StreamWriter(outputFile + ".txt");
             string linea = sr.ReadLine();
             string[] camps = linea.Split(',');
             sw.WriteLine($"{camps[0].ToUpper()}, {camps[1].ToUpper()}, {camps[2].ToUpper()}, {camps[7].ToUpper()}");
@@ -48,20 +49,19 @@ namespace _02___Act01Netflix.DAO
             string record = "";
             string linea = sr.ReadLine();
             bool trobat = false;
-            while (!trobat && linea != null)
+            bool pasat = false;
+            while (!trobat && linea != null && !pasat) //controlar que si et passa 
             {
                 string[] camps = Regex.Split(linea, PATTERN);
                 int idx = Convert.ToInt32(camps[0]);
                 if (idx == index)
                 {
-                    for (int i = 0; i < camps.Length; i++)
-                    {
-                        if (i == camps.Length - 1)
-                            record += $"{camps[i]}";
-                        else
-                            record += $"{camps[i]} ,";
-                    }
+                    record = linea;
                     trobat = true;
+                }
+                else if (index < idx)
+                {
+                    pasat = true;
                 }
                 linea = sr.ReadLine();
             }
@@ -70,32 +70,35 @@ namespace _02___Act01Netflix.DAO
             sr.Close();
             return record;
         }
-        public string SelectById(int id)
+        public string SelectById(string id)
         {
             StreamReader sr = new StreamReader(ENTRADAFN);
             sr.ReadLine();
             string record = "";
+            string val = "";
             string linea = sr.ReadLine();
             bool trobat = false;
+            //string idCsv = "";
+            //for (int i = 2; i < id.Length; i++)
+            //{
+            //    idCsv += id[i];
+            //}
             while (!trobat && linea != null)
             {
-                string val = "";
                 string[] camps = Regex.Split(linea, PATTERN);
-                string idCSV = camps[1];
-                for (int i = 2; i < idCSV.Length; i++)
+                val = camps[1];
+                //string idCSV = camps[1];
+                //for (int i = 2; i < idCSV.Length; i++)
+                //{
+                //    val += idCSV[i];
+                //}
+                //for (int i = 2; i < idCSV.Length; i++)
+                //{
+                //    val += idCSV[i];
+                //}
+                if (val == id)
                 {
-                    val += idCSV[i];
-                }
-                int idInInt = Convert.ToInt32(val);
-                if (idInInt == id)
-                {
-                    for (int i = 0; i < camps.Length; i++)
-                    {
-                        if (i == camps.Length - 1)
-                            record += $"{camps[i]}";
-                        else
-                            record += $"{camps[i]} ,";
-                    }
+                    record = linea;
                     trobat = true;
                 }
                 linea = sr.ReadLine();
@@ -160,7 +163,10 @@ namespace _02___Act01Netflix.DAO
             StreamWriter sw = new StreamWriter(outFileName + ".csv");
             foreach (RawTitle rawTitle in titles)
             {
-                sw.WriteLine(rawTitle.ToString());
+                if (rawTitle != null)
+                {
+                    sw.WriteLine(rawTitle.ToString());
+                }
             }
             sw.Close();
 
@@ -170,7 +176,7 @@ namespace _02___Act01Netflix.DAO
         public List<RawTitle> LlegirTitols(int nTitols, string fitxer)
         {
             StreamReader sr = new StreamReader(ENTRADAFN);
-            StreamWriter sw = new StreamWriter(fitxer);
+            StreamWriter sw = new StreamWriter(fitxer + ".txt");
 
             string linea;
             int i = 0;
@@ -242,6 +248,7 @@ namespace _02___Act01Netflix.DAO
 
         public List<string> RangeScore(double min, double max)
         {
+            
             double score = 0.0;
   
             List<string> titols = new List<string>();

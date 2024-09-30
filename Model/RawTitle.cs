@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _02___Act01Netflix
+namespace _02___Act01Netflix.Model
 {
     public class RawTitle : IComparable<RawTitle>
     {
@@ -18,14 +18,14 @@ namespace _02___Act01Netflix
         double? imdb_votes;
         public RawTitle(int index, string id, string title, string type, int release_Year, int seasons, double imdb_score, double imdb_votes)
         {
-            this.Index = index;
-            this.Id = id;
-            this.Title = title;
-            this.Type = type;
-            this.Release_Year = release_Year;
-            this.Seasons = seasons;
-            this.Imdb_score = imdb_score;
-            this.Imdb_votes = imdb_votes;
+            Index = index;
+            Id = id;
+            Title = title;
+            Type = type;
+            Release_Year = release_Year;
+            Seasons = seasons;
+            Imdb_score = imdb_score;
+            Imdb_votes = imdb_votes;
         }
 
         public int Index { get => index; set => index = value; }
@@ -44,13 +44,13 @@ namespace _02___Act01Netflix
         public int CompareTo(RawTitle? other)
         {
             int retornar = 0;
-            if (other != null && other.Imdb_score != null & this.imdb_score != null)
+            if (other != null && other.Imdb_score != null & imdb_score != null)
             {
-                if (other.imdb_score.Value == this.imdb_score.Value)
+                if (other.imdb_score.Value == imdb_score.Value)
                 {
-                    this.title.CompareTo(other.title);
+                    title.CompareTo(other.title);
                 }
-                retornar = other.Imdb_score.Value.CompareTo(this.Imdb_score.Value);
+                retornar = other.Imdb_score.Value.CompareTo(Imdb_score.Value);
 
             }
             return retornar;

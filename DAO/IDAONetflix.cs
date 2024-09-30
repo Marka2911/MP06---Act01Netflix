@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _02___Act01Netflix.Model;
 
 namespace _02___Act01Netflix.DAO
 {
@@ -10,7 +11,7 @@ namespace _02___Act01Netflix.DAO
     {
         int SelectByGenre(String genre, String outputFile);
         String SelectByIndex(int index);
-        String SelectById(int id);
+        String SelectById(string id);
         RawTitle[] ReadTitles(int index, int lenght);
         int PreMerge(RawTitle[] titles, String outFileName);
         List<RawTitle> LlegirTitols(int nTitols, string fitxer);

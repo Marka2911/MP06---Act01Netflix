@@ -1,5 +1,7 @@
 ﻿using _02___Act01Netflix.DAO;
+using _02___Act01Netflix.Model;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -39,9 +41,19 @@ namespace _02___Act01Netflix
 
             List<RawTitle> merged = dao.MergeTitols(primeraPart, segonaPart, MERGED);
 
+            factory = new DAOFactoryNetflix();
+            dao = new IDAONetflixImpementation();
+
+            int nThriller = dao.SelectByGenre("thril", "X.TXT");
+            string targetExercici2Null = dao.SelectByIndex(212433);
+            string targetExercici2NoNull = dao.SelectByIndex(2124);
+
+            string targetExercici3Null = dao.SelectById("tm204541dd");
+            string targetExercici3NoNull = dao.SelectById("tm204541");
             InitializeComponent();
             
         }
+
 
         private void Genere_Click(object sender, RoutedEventArgs e)
         {
@@ -95,8 +107,7 @@ namespace _02___Act01Netflix
             else
                 try
                 {
-                    int sId = Convert.ToInt32(val);
-                    string record = dao.SelectById(sId);
+                    string record = dao.SelectById(val);
                     if (record == null)
                         txt_record_ID.Text = $"No hi ha ningun record amb l'id {val}";
                     else
@@ -168,7 +179,7 @@ namespace _02___Act01Netflix
 
         private void btn_Scores_Click(object sender, RoutedEventArgs e)
         {
-
+            StreamWriter sw = new StreamWriter("RangeScore.txt");
             try
             {
                 if (txt_minScore.Text == "" || txt_maxScore.Text == "")
@@ -183,13 +194,19 @@ namespace _02___Act01Netflix
                 {
                     double MIN = Convert.ToDouble(txt_minScore.Text);
                     double MAX = Convert.ToDouble(txt_maxScore.Text);
+                    sw.WriteLine($"Titols amb un qualificació < {MAX} i > {MIN}");
+
                     if (MIN > MAX)
                     {
                         txt_scores.Text = $"El MIN - {MIN} - es més gran que el MAX - {MAX}";
                     }
                     else
                     {
-                        dao.RangeScore(MIN, MAX);
+                        List<String> titles = dao.RangeScore(MIN, MAX);
+                        foreach (string title in titles)
+                        {
+                            sw.WriteLine(title);
+                        }
                         txt_scores.Text = $"Ha funcionat tot correctament...";
                     }
                 }
